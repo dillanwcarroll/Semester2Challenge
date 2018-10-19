@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<SSLChallengeWebApplication.Models.MacAddress>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Mac_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateIssued)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Where(x => x.UserID == User.Identity.GetUserId()))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mac_Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateIssued)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Mac_Address }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Mac_Address }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Mac_Address })
+            </td>
+        </tr>
+    }
+
+</table>
